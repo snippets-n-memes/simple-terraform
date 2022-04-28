@@ -1,0 +1,22 @@
+// Setting the varibales like this will allow you to input via command line or file. Ex: rg_name
+rg_name                 = { default = null }
+location                = { default = null }
+aks_name                = { default = null }
+aks_dns_prefix          = { default = null }
+aks_sys_nodepool_name   = { default = null }
+aks_sys_node_count      = { default = null }
+aks_sys_vm_size         = { default = null }
+tags                    = { default = null }
+aks_app_nodepool_name   = { default = null }
+aks_app_vm_size         = { default = null }
+aks_app_node_count      = { default = null }
+aks_kubernetes_version  = { default = null }
+aks_ssh_key             = { default = null }
+aks_max_pods            = { default = null }
+aks_sys_min_count       = { default = null }
+aks_sys_max_count       = { default = null }
+aks_app_min_count       = { default = null }
+aks_app_max_count       = { default = null }
+node_resource_group     = { default = null }
+admin_username          = { default = null }
+pub_ssh_key             = { default = null }

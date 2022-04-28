@@ -1,0 +1,53 @@
+resource "azurerm_resource_group" "rg" {
+  count = 1
+  name     = var.rg_name
+  location = var.location
+}
+
+resource "azurerm_kubernetes_cluster" "aks" {
+  count = 1
+  name                = var.aks_name
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  dns_prefix          = var.aks_dns_prefix
+  kubernetes_version  = var.aks_kubernetes_version
+  node_resource_group = var.node_resource_group
+  
+  linux_profile {
+    admin_username = var.admin_username
+    ssh_key = {
+      key_data = replace(file(var.pub_ssh_key),"\n","")
+    }
+  }
+
+  default_node_pool {
+    only_critical_addons_enabled = true 
+    name                         = var.aks_sys_nodepool_name
+    node_count                   = var.aks_sys_node_count
+    vm_size                      = var.aks_sys_vm_size
+    orchestrator_version         = var.aks_k8s_version
+    max_pods                     = var.aks_max_pods
+    min_count                    = var.aks_sys_min_count 
+    max_count                    = var.aks_sys_max_count
+  }
+
+  identity {
+    type = "SystemAssigned"
+  }
+
+  tags = var.tags
+}
+
+resource "azurerm_kubernetes_cluster_node_pool" "app_nodepool" {
+  count = 1
+  mode                  = "User" 
+  name                  = var.aks_app_nodepool_name
+  kubernetes_cluster_id = azurerm_kubernetes_cluster.aks.id
+  vm_size               = var.aks_app_vm_size
+  node_count            = var.aks_app_node_count
+  orchestrator_version  = var.aks_kubernetes_version
+  max_pods              = var.aks_max_pods
+  min_count             = var.aks_app_min_count 
+  max_count             = var.aks_app_max_count 
+  tags                  = var.aks_tags
+}
