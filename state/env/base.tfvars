@@ -1,3 +1,8 @@
+# Defined Resources
+resource_group_rg           = 1
+storage_account_sa          = 1
+storage_container_sc        = 1
+
 # Global
 location                     = "East US"
 
