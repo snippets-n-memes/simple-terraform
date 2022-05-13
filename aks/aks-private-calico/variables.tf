@@ -1,31 +1,39 @@
-variable "resource_group_rg"                 { default = null }
-variable "kubernetes_cluster_aks"            { default = null }
-variable "kubernetes_cluster_node_pool_app"  { default = null }
-variable "rg_name"                           { default = null }
-variable "location"                          { default = null }
-variable "aks_name"                          { default = null }
-variable "aks_dns_prefix"                    { default = null }
-variable "aks_sys_node_pool_name"            { default = null }
-variable "aks_sys_node_count"                { default = null }
-variable "aks_sys_vm_size"                   { default = null }
-variable "tags"                              { default = null }
-variable "aks_app_node_pool_name"            { default = null }
-variable "aks_app_vm_size"                   { default = null }
-variable "aks_app_node_count"                { default = null }
-variable "aks_kubernetes_version"            { default = null }
-variable "aks_ssh_key"                       { default = null }
-variable "aks_max_pods"                      { default = null }
-variable "aks_sys_min_count"                 { default = null }
-variable "aks_sys_max_count"                 { default = null }
-variable "aks_app_min_count"                 { default = null }
-variable "aks_app_max_count"                 { default = null }
-variable "node_resource_group"               { default = null }
-variable "admin_username"                    { default = null }
-variable "pub_ssh_key"                       { default = null }
-variable "aks_enable_auto_scaling"           { default = null }
-variable "aks_agents_type"                   { default = null }
-variable "private_cluster_enabled"           { default = null }
-variable "aks_sku_tier"                      { default = null }
-variable "aks_k8s_version"                   { default = null }
-variable "resource_group_rg1"                { default = null }
-variable "rg1_name"                          { default = null }
+variable "resource_group_rg" {}
+variable "kubernetes_cluster_aks" {}
+variable "kubernetes_cluster_node_pool_app" {}
+variable "rg_name" {}
+variable "location" {}
+variable "aks_name" {}
+variable "aks_dns_prefix" {}
+variable "aks_sys_node_pool_name" {}
+variable "aks_sys_node_count" {}
+variable "aks_sys_vm_size" {}
+variable "tags" {}
+variable "aks_app_node_pool_name" {}
+variable "aks_app_vm_size" {}
+variable "aks_app_node_count" {}
+variable "aks_kubernetes_version" {}
+variable "aks_ssh_key" {}
+variable "aks_max_pods" {}
+variable "aks_sys_min_count" {}
+variable "aks_sys_max_count" {}
+variable "aks_app_min_count" {}
+variable "aks_app_max_count" {}
+variable "node_resource_group" {}
+variable "admin_username" {}
+variable "pub_ssh_key" {}
+variable "aks_enable_auto_scaling" {}
+variable "aks_agents_type" {}
+variable "private_cluster_enabled" {}
+variable "aks_sku_tier" {}
+variable "aks_k8s_version" {}
+variable "identity_name" {}
+variable "network_plugin" {}
+variable "network_policy" {}
+variable "dns_service_ip" {}
+variable "docker_bridge_cidr" {}
+variable "service_cidr" {}
+variable "subnet" {}
+variable "vnet" {}
+variable "vnet_rg" {}
+variable "private_dns_zone" {}

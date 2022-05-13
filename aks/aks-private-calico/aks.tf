@@ -1,9 +1,3 @@
-resource "azurerm_resource_group" "rg" {
-  count    = var.resource_group_rg
-  name     = var.rg_name
-  location = var.location
-}
-
 resource "azurerm_kubernetes_cluster" "aks" {
   count                   = var.kubernetes_cluster_aks
   name                    = var.aks_name
@@ -14,21 +8,22 @@ resource "azurerm_kubernetes_cluster" "aks" {
   kubernetes_version      = var.aks_kubernetes_version
   sku_tier                = var.aks_sku_tier
   private_cluster_enabled = var.private_cluster_enabled
+  private_dns_zone_id     = data.azurerm_private_dns_zone.dns.id
   
   linux_profile {
     admin_username = var.admin_username
 
     ssh_key {
-      key_data = replace(file(var.pub_ssh_key), "\n", "")
+      key_data = file(var.pub_ssh_key)
     }
   }
 
   network_profile {
-    network_plugin = "azure"
-    network_policy = "calico"
-    dns_service_ip         = cidrhost("172.16.0.0/16", 10)
-    docker_bridge_cidr     = "170.10.0.1/16"
-    service_cidr           = "172.16.0.0/16"
+    network_plugin = var.network_plugin
+    network_policy = var.network_policy
+    dns_service_ip         = var.dns_service_ip
+    docker_bridge_cidr     = var.docker_bridge_cidr
+    service_cidr           = var.service_cidr
   }
 
   default_node_pool {
@@ -42,14 +37,20 @@ resource "azurerm_kubernetes_cluster" "aks" {
     max_count                    = var.aks_sys_max_count
     enable_auto_scaling          = var.aks_enable_auto_scaling
     type                         = var.aks_agents_type
-    vnet_subnet_id               = element(azurerm_virtual_network.vn.subnet.*.id, 0)
+    vnet_subnet_id               = data.azurerm_subnet.sn.id
   }
 
   identity {
-    type = "SystemAssigned"
+    type = "UserAssigned"
+    identity_ids = [azurerm_user_assigned_identity.mi.id]
   }
 
   tags = var.tags
+
+  depends_on = [
+    azurerm_role_assignment.dns,
+    azurerm_role_assignment.net,
+  ]
 }
 
 resource "azurerm_kubernetes_cluster_node_pool" "app" {
@@ -64,5 +65,5 @@ resource "azurerm_kubernetes_cluster_node_pool" "app" {
   min_count             = var.aks_app_min_count 
   max_count             = var.aks_app_max_count 
   tags                  = var.tags
-  vnet_subnet_id        = element(azurerm_virtual_network.vn.subnet.*.id, 0)
+  vnet_subnet_id        = data.azurerm_subnet.sn.id
 }    

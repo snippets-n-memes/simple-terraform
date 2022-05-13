@@ -1,6 +1,5 @@
 # Defined Resources
 resource_group_rg                = 1
-resource_group_rg1               = 1
 kubernetes_cluster_aks           = 1
 kubernetes_cluster_node_pool_app = 1
 
@@ -9,7 +8,15 @@ location                         = "East US"
 
 # Resource Group
 rg_name                          = "aks_resources"
-rg1_name                         = "net_resources"
+
+# Data objects
+subnet                           = "aks"
+vnet                             = "vnet-spoke"
+vnet_rg                          = "spoke"
+private_dns_zone                 = "privatelink.eastus.azmk8s.io"
+
+# Managed Identity
+identity_name                    = "dank-id"
 
 # Kubernetes Cluster AKS
 aks_name                         = "aks-dank"
@@ -28,6 +35,13 @@ aks_enable_auto_scaling          = "false"
 private_cluster_enabled          = "true"
 admin_username                   = "robodank"
 pub_ssh_key                      = "~/.ssh/id_rsa.pub"
+
+# AKS Network
+network_plugin                   = "azure"
+network_policy                   = "calico"
+dns_service_ip                   = "10.2.0.10"
+docker_bridge_cidr               = "170.10.0.1/16"
+service_cidr                     = "10.2.0.0/24"
 
 # Kubernetes Cluster Node Pool "app"
 aks_app_vm_size                  = "Standard_DS2_v2"

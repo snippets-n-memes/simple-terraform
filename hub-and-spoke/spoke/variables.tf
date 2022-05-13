@@ -1,0 +1,11 @@
+variable "resource_group_rg" {}
+variable "location" {}
+variable "rg_name" {}
+variable "hub_rg" {}
+variable "hub_vn" {}
+variable "spoke_vn" {}
+variable "address_space" {}
+variable "dns_servers" {}
+variable "subnets" {}
+variable "private_dns_zone_name" {}
+variable "link_name" {}
