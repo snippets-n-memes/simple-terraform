@@ -3,6 +3,9 @@ resource "azurerm_public_ip" "pub" {
   resource_group_name = azurerm_resource_group.rg1[0].name
   location            = var.location
   allocation_method   = var.allocation_method
+  zones               = []
+  ip_tags             = {}
+  tags                = {}
 }
 
 resource "azurerm_network_interface" "nic" {
@@ -14,8 +17,10 @@ resource "azurerm_network_interface" "nic" {
     name                          = var.ip_config_name
     subnet_id                     = data.azurerm_subnet.mgmt.id
     private_ip_address_allocation = var.private_ip_allocation
+    private_ip_address            = var.private_ip_address
     public_ip_address_id          = azurerm_public_ip.pub.id
   }
+  tags     = {}
 }
 
 resource "azurerm_linux_virtual_machine" "example" {
@@ -42,6 +47,7 @@ resource "azurerm_linux_virtual_machine" "example" {
     publisher = var.publisher
     offer     = var.offer
     sku       = var.sku
-    version   = var.version
+    version   = var.img_version
   }
+  tags     = {}
 }

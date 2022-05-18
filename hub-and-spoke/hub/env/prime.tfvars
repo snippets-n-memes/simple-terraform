@@ -13,14 +13,14 @@ spoke_rg                         = "spoke"
 # Virtual Network in Hub
 hub_vn                           = "vnet-hub"
 address_space                    = ["10.0.0.0/16"]
-dns_servers                      = ["10.0.0.4"]
+dns_servers                      = ["10.0.0.4","168.63.129.16"]
 
 # Subnets
 mgmt_sn                          = "mgmt"
 subnets = [
   {
     name           = "mgmt"
-    address_prefix = "10.0.2.0/24"
+    address_prefix = "10.0.0.0/24"
   }
 ]
 
@@ -32,15 +32,16 @@ allocation_method                = "Static"
 nic_name                         = "nic1"
 ip_config_name                   = "internal"
 private_ip_allocation            = "Static"
+private_ip_address               = "10.0.0.4"
 
 # VM
 vm_name                          = "pihole"
-size                             = "Standard_DS2"
+size                             = "Standard_D2s_v3"
 admin_username                   = "azureruser"
 pub_ssh_key                      = "~/.ssh/id_rsa.pub"
 disk_caching                     = "ReadWrite"
 storage_account_type             = "Standard_LRS"
 publisher                        = "Canonical"
-offer                            = "UbuntuServer"
-sku                              = "20.04-LTS"
-version                          = "latest"
+offer                            = "0001-com-ubuntu-server-focal"
+sku                              = "20_04-lts"
+img_version                      = "latest"

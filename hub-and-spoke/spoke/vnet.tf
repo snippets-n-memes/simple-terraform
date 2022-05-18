@@ -6,10 +6,10 @@ resource "azurerm_virtual_network" "vn" {
   dns_servers         = var.dns_servers
 
   dynamic "subnet" {
-    for_each var.subnets
+    for_each = var.subnets
     content {
-      name           = subnets.value.name
-      address_prefix = subnets.value.address_prefix
+      name           = subnet.value.name
+      address_prefix = subnet.value.address_prefix
     }
   }
 }

@@ -23,12 +23,12 @@ aks_name                         = "aks-dank"
 aks_dns_prefix                   = "dank8s"
 aks_sku_tier                     = "Free"
 node_resource_group              = "node_resources"
-aks_k8s_version                  = "1.20.7"
+aks_k8s_version                  = "1.22.6"
 aks_sys_vm_size                  = "Standard_DS2_v2"
 aks_sys_node_pool_name           = "system"
 aks_sys_node_count               = 1
-// aks_sys_min_count                = 1
-// aks_sys_max_count                = 3
+aks_sys_min_count                = null
+aks_sys_max_count                = null
 aks_max_pods                     = 30
 aks_agents_type                  = "VirtualMachineScaleSets"
 aks_enable_auto_scaling          = "false"
@@ -47,8 +47,8 @@ service_cidr                     = "10.2.0.0/24"
 aks_app_vm_size                  = "Standard_DS2_v2"
 aks_app_node_pool_name           = "app"
 aks_app_node_count               = 1
-// aks_app_min_count                = 1
-// aks_app_max_count                = 3
+aks_app_min_count                = null
+aks_app_max_count                = null
 
 # Tags
 tags = {

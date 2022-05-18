@@ -11,7 +11,7 @@ hub_rg                           = "hub"
 # Virtual Network in Hub
 hub_vn                           = "vnet-hub"
 spoke_vn                         = "vnet-spoke"
-address_space                    = ["10.0.0.0/16"]
+address_space                    = ["10.1.0.0/16"]
 dns_servers                      = ["10.0.0.4"]
 
 
