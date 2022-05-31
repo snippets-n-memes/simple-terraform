@@ -15,6 +15,9 @@ hub_vn                           = "vnet-hub"
 address_space                    = ["10.0.0.0/16"]
 dns_servers                      = ["10.0.0.4","168.63.129.16"]
 
+# DNS
+private_dns_zone_name            = "privatelink.eastus.azmk8s.io"
+
 # Subnets
 mgmt_sn                          = "mgmt"
 subnets = [

@@ -13,6 +13,7 @@ rg_name                          = "aks_resources"
 subnet                           = "aks"
 vnet                             = "vnet-spoke"
 vnet_rg                          = "spoke"
+vnet_hub                         = "hub"
 private_dns_zone                 = "privatelink.eastus.azmk8s.io"
 
 # Managed Identity

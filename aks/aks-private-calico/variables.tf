@@ -2,6 +2,7 @@ variable "resource_group_rg" {}
 variable "kubernetes_cluster_aks" {}
 variable "kubernetes_cluster_node_pool_app" {}
 variable "rg_name" {}
+variable "vnet_hub" {}
 variable "location" {}
 variable "aks_name" {}
 variable "aks_dns_prefix" {}

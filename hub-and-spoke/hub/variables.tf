@@ -25,3 +25,4 @@ variable "publisher" {}
 variable "offer" {}
 variable "sku" {}
 variable "img_version" {}
+variable "private_dns_zone_name" {}
