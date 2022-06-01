@@ -5,7 +5,7 @@ resource_group_rg                = 1
 location                         = "East US"
 
 # Resource Group
-rg_name                          = "spoke"
+spoke_rg                         = "spoke"
 hub_rg                           = "hub"
 
 # Virtual Network in Hub
@@ -25,4 +25,4 @@ subnets = [
 
 # DNS
 private_dns_zone_name            = "privatelink.eastus.azmk8s.io"
-link_name                        = "link"
+link_name                        = "linktospoke"

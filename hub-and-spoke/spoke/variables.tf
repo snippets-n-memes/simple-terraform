@@ -1,6 +1,6 @@
 variable "resource_group_rg" {}
 variable "location" {}
-variable "rg_name" {}
+variable "spoke_rg" {}
 variable "hub_rg" {}
 variable "hub_vn" {}
 variable "spoke_vn" {}

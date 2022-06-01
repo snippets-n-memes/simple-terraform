@@ -6,8 +6,8 @@ resource_group_rg1               = 1
 location                         = "East US"
 
 # Resource Group
-rg_name                          = "hub"
-rg1_name                         = "mgmt"
+hub_rg                           = "hub"
+mgmt_rg                          = "mgmt"
 spoke_rg                         = "spoke"
 
 # Virtual Network in Hub
@@ -17,6 +17,7 @@ dns_servers                      = ["10.0.0.4","168.63.129.16"]
 
 # DNS
 private_dns_zone_name            = "privatelink.eastus.azmk8s.io"
+link_name                        = "linktohub"
 
 # Subnets
 mgmt_sn                          = "mgmt"
@@ -40,7 +41,7 @@ private_ip_address               = "10.0.0.4"
 # VM
 vm_name                          = "pihole"
 size                             = "Standard_D2s_v3"
-admin_username                   = "azureruser"
+admin_username                   = "azureuser"
 pub_ssh_key                      = "~/.ssh/id_rsa.pub"
 disk_caching                     = "ReadWrite"
 storage_account_type             = "Standard_LRS"

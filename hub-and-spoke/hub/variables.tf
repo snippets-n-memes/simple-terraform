@@ -1,7 +1,7 @@
 variable "resource_group_rg" {}
 variable "resource_group_rg1" {}
-variable "rg_name" {}
-variable "rg1_name" {}
+variable "hub_rg" {}
+variable "mgmt_rg" {}
 variable "location" {}
 variable "hub_vn" {}
 variable "subnets" {}
@@ -26,3 +26,4 @@ variable "offer" {}
 variable "sku" {}
 variable "img_version" {}
 variable "private_dns_zone_name" {}
+variable "link_name" {}
