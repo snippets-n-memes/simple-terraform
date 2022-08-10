@@ -1,7 +1,4 @@
 name: 'Terraform'
-inputs:
-  env:
-    description: "The environment to update"
 
 on:
   push:
