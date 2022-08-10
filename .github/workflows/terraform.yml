@@ -40,7 +40,8 @@ jobs:
         terraform show -no-color tfplan > tfplan.txt
         sed -i -E 's/^([[:space:]]+)([-+])/\2\1/g' tfplan.txt
         PLAN=$(cat tfplan.txt)
-        echo "PLAN=${PLAN}" >> $GITHUB_ENV
+        echo $PLAN
+        echo "{PLAN}=${PLAN}" >> $GITHUB_ENV
 
     - name: Post Plan to GitHub PR
       uses: mshick/add-pr-comment@v1
