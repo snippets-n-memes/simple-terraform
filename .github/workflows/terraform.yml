@@ -1,0 +1,79 @@
+name: 'Terraform'
+inputs:
+  env:
+    description: "The environment to update"
+
+on:
+  push:
+    branches:
+      - dev
+      - trunk
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
+  ARM_CLIENT_SECRET: ${{ secrets.AZURE_CLIENT_SECRET }}
+  ARM_SUBSCRIPTION_ID: ${{ secrets.AZURE_SUBSCRIPTION }}
+  ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
+
+jobs:
+  plan:
+    name: 'Terraform Plan'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: aks/aks-simple
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Terraform Plan
+      run: |
+        terraform init
+        terraform plan -no-color -input=false -var-file=env/prime.tfvars -out tfplan
+
+    - name: Prep Plan for Comment
+      run: |
+        terraform show -no-color tfplan > tfplan.txt
+        sed -i -E 's/^([[:space:]]+)([-+])/\2\1/g' tfplan.txt
+        PLAN=$(cat tfplan.txt)
+        echo "$PLAN" >> $GITHUB_ENV
+
+    - name: Post Plan to GitHub PR
+      uses: mshick/add-pr-comment@v1
+      with:
+        allow-repeats: true
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        repo-token-user-login: 'github-actions[bot]'
+        message: |
+          ## ${{ matrix.path }} plan
+          ```diff
+          ${{ env.PLAN }}
+          ```      
+    
+  apply:
+    needs: plan
+    if: github.ref == 'refs/heads/main'
+    name: 'Terraform Apply'
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        shell: bash
+        working-directory: terraform
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Terraform Apply
+      run: |
+        terraform init
+        terraform apply -input=false -auto-approve
+        
