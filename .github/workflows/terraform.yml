@@ -1,9 +1,6 @@
 name: 'Terraform'
 
-on:
-  pull_request:
-    types: [oepned, edited, reopened]
-  workflow_dispatch:
+on: [pull_request_target]
 
 permissions:
   contents: read
