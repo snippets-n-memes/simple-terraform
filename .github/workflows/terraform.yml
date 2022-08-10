@@ -46,7 +46,7 @@ jobs:
     - name: Create PR comment
       uses: peter-evans/create-or-update-comment@v2
       with:
-        issue-number: 1
+        issue-number: $(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
         body: |
           ```diff
           ${{ env.PLAN }}
