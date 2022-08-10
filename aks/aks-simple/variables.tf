@@ -12,8 +12,7 @@ variable "tags" {}
 variable "aks_app_node_pool_name" {}
 variable "aks_app_vm_size" {}
 variable "aks_app_node_count" {}
-variable "aks_kubernetes_version" {}
-variable "aks_ssh_key" {}
+variable "aks_k8s_version" {}
 variable "aks_max_pods" {}
 variable "aks_sys_min_count" {}
 variable "aks_sys_max_count" {}
@@ -26,4 +25,3 @@ variable "aks_enable_auto_scaling" {}
 variable "aks_agents_type" {}
 variable "private_cluster_enabled" {}
 variable "aks_sku_tier" {}
-variable "aks_k8s_version" {}
