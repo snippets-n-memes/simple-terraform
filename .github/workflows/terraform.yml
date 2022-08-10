@@ -1,10 +1,6 @@
 name: 'Terraform'
 
-on: 
-  pull_request_target:
-    branches:
-      - trunk
-      - dev
+on: [pull_request_target]
 
 permissions:
   contents: read
@@ -42,11 +38,12 @@ jobs:
         echo "PLAN<<EOF" >> $GITHUB_ENV
         echo "$PLAN" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV  
-
+        echo "PR_NUM=$(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')" >> $GITHUB_ENV
+        
     - name: Create PR comment
       uses: peter-evans/create-or-update-comment@v2
       with:
-        issue-number: $(echo $GITHUB_REF | awk 'BEGIN { FS = "/" } ; { print $3 }')
+        issue-number: ${{ env.PR_NUM  }}
         body: |
           ```diff
           ${{ env.PLAN }}
