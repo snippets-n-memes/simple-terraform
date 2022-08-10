@@ -1,10 +1,8 @@
 name: 'Terraform'
 
 on:
-  push:
-    branches:
-      - dev
-      - trunk
+  pull_request:
+    types: [oepned, edited, reopened]
   workflow_dispatch:
 
 permissions:
