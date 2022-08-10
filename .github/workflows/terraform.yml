@@ -44,17 +44,16 @@ jobs:
         echo "$PLAN" >> $GITHUB_ENV
         echo "EOF" >> $GITHUB_ENV  
 
-    - name: Post Plan to GitHub PR
-      uses: mshick/add-pr-comment@v1
+    - name: Create PR comment
+      uses: peter-evans/create-or-update-comment@v2
       with:
-        allow-repeats: true
-        repo-token: ${{ secrets.GITHUB_TOKEN }}
-        repo-token-user-login: 'github-actions[bot]'
-        message: |
-          ## ${{ matrix.path }} plan
+        issue-number: 1
+        body: |
           ```diff
           ${{ env.PLAN }}
-          ```      
+          ```
+        reactions: 'rocket'
+        ```      
     
   apply:
     needs: plan
