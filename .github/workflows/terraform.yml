@@ -4,6 +4,8 @@ on: [pull_request_target]
 
 permissions:
   contents: read
+  issues: write
+  pull-requests: write
 
 env:
   ARM_CLIENT_ID: ${{ secrets.AZURE_CLIENT_ID }}
