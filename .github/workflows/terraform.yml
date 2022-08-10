@@ -52,8 +52,7 @@ jobs:
           ```diff
           ${{ env.PLAN }}
           ```
-        reactions: 'rocket'
-        ```      
+        reactions: 'rocket'   
     
   apply:
     needs: plan
