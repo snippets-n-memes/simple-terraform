@@ -1,3 +1,4 @@
+# comment
 # Defined Resources
 resource_group_rg                = 1
 kubernetes_cluster_aks           = 1
