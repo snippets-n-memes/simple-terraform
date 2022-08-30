@@ -2,7 +2,7 @@ name: 'Terraform'
 
 on:
   push:
-    branch: 
+    branches: 
       - trunk
 
 permissions:
@@ -21,7 +21,6 @@ jobs:
         env: [prime, beta]
     environment:
       name: ${{ matrix.env }}
-    needs: plan
     name: 'Terraform Apply'
     runs-on: ubuntu-latest
 
