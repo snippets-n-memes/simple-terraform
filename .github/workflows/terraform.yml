@@ -68,7 +68,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: terraform
+       working-directory: aks/aks-simple
 
     steps:
     - name: Checkout
