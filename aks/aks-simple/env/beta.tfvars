@@ -11,7 +11,7 @@ rg_name                          = "beta_resources"
 
 # Kubernetes Cluster AKS
 aks_name                         = "aks-dank_beta"
-aks_dns_prefix                   = "dank8s"
+aks_dns_prefix                   = "dank8s2"
 aks_sku_tier                     = "Free"
 node_resource_group              = "node_resources_beta"
 aks_k8s_version                  = "1.22.6"
