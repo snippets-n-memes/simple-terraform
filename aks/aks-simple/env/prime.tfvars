@@ -7,13 +7,13 @@ kubernetes_cluster_node_pool_app = 1
 location                         = "East US"
 
 # Resource Group
-rg_name                          = "aks_resources"
+rg_name                          = " primogenial_resources"
 
 # Kubernetes Cluster AKS
-aks_name                         = "aks-dank"
+aks_name                         = "aks-dank-prime"
 aks_dns_prefix                   = "dank8s"
 aks_sku_tier                     = "Free"
-node_resource_group              = "node_resources"
+node_resource_group              = "node_resources-prime"
 aks_k8s_version                  = "1.22.6"
 aks_sys_vm_size                  = "Standard_DS2_v2"
 aks_sys_node_pool_name           = "system"
