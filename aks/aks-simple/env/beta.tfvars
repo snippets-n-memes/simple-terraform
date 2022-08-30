@@ -7,11 +7,11 @@ kubernetes_cluster_node_pool_app = 1
 location                         = "East US"
 
 # Resource Group
-rg_name                          = "primogenial_resources"
+rg_name                          = "beta_resources"
 
 # Kubernetes Cluster AKS
-aks_name                         = "aks-dank-beta"
-aks_dns_prefix                   = "dank8s"
+aks_name                         = "aks-dank_beta"
+aks_dns_prefix                   = "dank8s2"
 aks_sku_tier                     = "Free"
 node_resource_group              = "node_resources_beta"
 aks_k8s_version                  = "1.22.6"

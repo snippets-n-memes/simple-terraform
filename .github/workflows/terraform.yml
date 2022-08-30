@@ -56,8 +56,13 @@ jobs:
         reactions: 'rocket'   
     
   apply:
+    strategy:
+      matrix: 
+        env: [prime, beta]
+    environment:
+      name: ${{ matrix.env }}
     needs: plan
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/trunk'
     name: 'Terraform Apply'
     runs-on: ubuntu-latest
 
@@ -73,5 +78,5 @@ jobs:
     - name: Terraform Apply
       run: |
         terraform init
-        terraform apply -input=false -auto-approve
+        terraform apply -var-file=env/${{ matrix.env }}.tfvars -input=false -auto-approve
         
