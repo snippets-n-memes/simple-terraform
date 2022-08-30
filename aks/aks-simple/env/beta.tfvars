@@ -10,7 +10,7 @@ location                         = "East US"
 rg_name                          = "primogenial_resources"
 
 # Kubernetes Cluster AKS
-aks_name                         = "aks-dank-beta"
+aks_name                         = "aks-dank_beta"
 aks_dns_prefix                   = "dank8s"
 aks_sku_tier                     = "Free"
 node_resource_group              = "node_resources_beta"
