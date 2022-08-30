@@ -15,6 +15,9 @@ env:
 
 jobs:
   plan:
+    strategy: 
+      matrix: 
+        env: [prime, beta]
     name: 'Terraform Plan'
     runs-on: ubuntu-latest
 
@@ -29,8 +32,8 @@ jobs:
 
     - name: Terraform Plan
       run: |
-        terraform init
-        terraform plan -no-color -input=false -var-file=env/prime.tfvars -out tfplan
+        terraform init -backend-config=key=${{ matrix.env  }}.tfvars
+        terraform plan -no-color -input=false -var-file=env/${{ matrix.env  }}.tfvars -out tfplan
 
     - name: Prep Plan for Comment
       run: |
@@ -46,6 +49,7 @@ jobs:
       with:
         issue-number: ${{ github.event.number }}
         body: |
+          ## ${{ matrix.env  }} Plan
           ```diff
           ${{ env.PLAN }}
           ```
