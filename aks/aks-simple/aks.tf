@@ -52,6 +52,7 @@ resource "azurerm_kubernetes_cluster_node_pool" "app" {
   node_count            = var.aks_app_node_count
   orchestrator_version  = var.aks_k8s_version
   max_pods              = var.aks_max_pods
+  enable_auto_scaling   = var.aks_enable_auto_scaling
   min_count             = var.aks_app_min_count 
   max_count             = var.aks_app_max_count 
   tags                  = var.tags

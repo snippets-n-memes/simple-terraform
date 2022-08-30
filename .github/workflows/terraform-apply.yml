@@ -16,6 +16,7 @@ env:
 
 jobs:
   apply:
+    continue-on-error: true
     strategy:
       matrix: 
         env: [prime, beta]
