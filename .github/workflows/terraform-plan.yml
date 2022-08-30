@@ -55,27 +55,3 @@ jobs:
           ```
         reactions: 'rocket'   
     
-  apply:
-    strategy:
-      matrix: 
-        env: [prime, beta]
-    environment:
-      name: ${{ matrix.env }}
-    needs: plan
-    name: 'Terraform Apply'
-    runs-on: ubuntu-latest
-
-    defaults:
-      run:
-        shell: bash
-       working-directory: aks/aks-simple
-
-    steps:
-    - name: Checkout
-      uses: actions/checkout@v3
-
-    - name: Terraform Apply
-      run: |
-        terraform init
-        terraform apply -var-file=env/${{ matrix.env }}.tfvars -input=false -auto-approve
-        
