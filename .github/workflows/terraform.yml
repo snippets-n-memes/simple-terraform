@@ -31,7 +31,7 @@ jobs:
 
     - name: Terraform Plan
       run: |
-        terraform init
+        terraform init -backend-config=key=prime.tfvars
         terraform plan -no-color -input=false -var-file=env/prime.tfvars -out tfplan
 
     - name: Prep Plan for Comment
