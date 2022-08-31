@@ -36,5 +36,5 @@ jobs:
 
     - name: Terraform Apply
       run: |
-        terraform init -backend-config=key=${{ matrix.env  }}.tfvars
+        terraform init -backend-config=key=${{ matrix.env  }}
         terraform apply -var-file=env/${{ matrix.env }}.tfvars -input=false -auto-approve
