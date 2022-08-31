@@ -7,7 +7,7 @@ kubernetes_cluster_node_pool_app = 1
 location                         = "East US"
 
 # Resource Group
-rg_name                          = "beta_resources"
+rg_name                          = "dank_resources1"
 
 # Kubernetes Cluster AKS
 aks_name                         = "aks-dank_beta"
