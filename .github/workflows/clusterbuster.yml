@@ -1,0 +1,58 @@
+name: Speak to AKS
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+env:
+  RESOURCE_GROUP: "dank_cluster_resources"
+  CLUSTER_NAME: "dank-aks"
+
+jobs:
+  kubetime:
+    permissions:
+      actions: read
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+    - name: Azure login
+      uses: azure/login@v1.4.3
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+    - name: Get K8s context
+      uses: azure/aks-set-context@v2.0
+      with:
+        resource-group: ${{ env.RESOURCE_GROUP }}
+        cluster-name: ${{ env.CLUSTER_NAME }}  
+        
+    - name: Install Kubelogin
+      run: |
+        curl -L $(curl -s https://api.github.com/repos/Azure/kubelogin/releases/latest \
+          | jq -r ".assets[] | select(.name | test(\"linux-amd64.zip$\")) | .browser_download_url") \
+          -o kubelogin.zip
+        unzip kubelogin.zip
+        chmod +x bin/linux_amd64/kubelogin
+        echo "$(find "$(pwd)" -name kubelogin | rev | cut -d '/' -f 2- | rev)" >> $GITHUB_PATH
+        
+    - name: kubectl stuff
+      run: |
+        kubelogin convert-kubeconfig -l azurecli
+        kubectl get nodes
+        kubectl create ns actions-runner-system
+        kubectl create secret generic controller-manager \
+          -n actions-runner-system \
+          --from-literal=github_token=${{ secrets.ARC_PAT }}
+        helm repo add jetstack https://charts.jetstack.io
+        helm repo update
+        helm install \
+          cert-manager jetstack/cert-manager \
+          --namespace cert-manager \
+          --create-namespace \
+          --version v1.9.1 \
+          --set installCRDs=true
+        helm repo add actions-runner-controller https://actions-runner-controller.github.io/actions-runner-controller
+        helm upgrade --install --namespace actions-runner-system \
+          --wait actions-runner-controller actions-runner-controller/actions-runner-controller
+        kubectl apply -f manifests
