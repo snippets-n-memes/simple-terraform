@@ -5,7 +5,7 @@ on:
   workflow_call:
 
 env:
-  RESOURCE_GROUP: "dank_cluster_resources"
+  RESOURCE_GROUP: "dank_simple_cluster_resources"
   CLUSTER_NAME: "dank-aks"
 
 jobs:
