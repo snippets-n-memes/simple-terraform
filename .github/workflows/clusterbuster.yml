@@ -6,7 +6,7 @@ on:
 
 env:
   RESOURCE_GROUP: "dank_simple_cluster_resources"
-  CLUSTER_NAME: "als-dank_prime
+  CLUSTER_NAME: "aks-dank_prime"
 
 jobs:
   kubetime:
