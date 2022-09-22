@@ -1,4 +1,4 @@
-name: Speak to AKS
+name: Bust-A-Cluster
 
 on:
   workflow_dispatch:
