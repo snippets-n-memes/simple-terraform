@@ -14,7 +14,7 @@ env:
   ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 
 jobs:
-  apply:
+  nuke:
     continue-on-error: true
     strategy:
       matrix: 
