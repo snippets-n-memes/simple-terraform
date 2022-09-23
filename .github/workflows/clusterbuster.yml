@@ -14,8 +14,8 @@ jobs:
     strategy:
       matrix:
         cluster: 
-          - dank_simple_cluster_resources_prime/aks-dank_prime
-          - dank_simple_cluster_resources_beta/aks-dank_beta
+          - dank_simple_cluster_prime/aks-dank_prime
+          - dank_simple_cluster_beta/aks-dank_beta
         env: 
           - prime
           - beta

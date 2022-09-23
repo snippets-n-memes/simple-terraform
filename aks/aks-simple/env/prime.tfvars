@@ -8,13 +8,13 @@ kubernetes_cluster_node_pool_app = 1
 location                         = "East US"
 
 # Resource Group
-rg_name                          = "dank_simple_cluster_resources"
+rg_name                          = "dank_simple_cluster_prime"
 
 # Kubernetes Cluster AKS
 aks_name                         = "aks-dank_prime"
 aks_dns_prefix                   = "dank8s1"
 aks_sku_tier                     = "Free"
-node_resource_group              = "node_resources_prime"
+node_resource_group              = "dank_nodes_prime"
 aks_k8s_version                  = "1.24.3"
 aks_sys_vm_size                  = "Standard_DS2_v2"
 aks_sys_node_pool_name           = "system"
@@ -37,5 +37,5 @@ aks_app_max_count                = 3
 
 # Tags
 tags = {
-    Environment = "Test"
+    Environment = "Prime"
   }
