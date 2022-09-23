@@ -33,7 +33,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Terraform Apply
+    - name: Terraform Destroy
       run: |
         terraform init -backend-config=key=${{ matrix.env  }}
         terraform destroy -var-file=env/${{ matrix.env }}.tfvars -input=false -auto-approve
