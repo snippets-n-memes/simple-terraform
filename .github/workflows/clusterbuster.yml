@@ -16,11 +16,8 @@ jobs:
         cluster: 
           - dank_simple_cluster_prime/aks-dank_prime
           - dank_simple_cluster_beta/aks-dank_beta
-        env: 
-          - prime
-          - beta
     environment:
-      name: ${{ matrix.env }}
+      name: [prime, beta]
     permissions:
       actions: read
       contents: read
