@@ -36,14 +36,16 @@ jobs:
         chmod +x bin/linux_amd64/kubelogin
         echo "$(find "$(pwd)" -name kubelogin | rev | cut -d '/' -f 2- | rev)" >> $GITHUB_PATH
         
-    - name: kubectl stuff
+    - name: Create Namespace and Secret
       run: |
         kubelogin convert-kubeconfig -l azurecli
-        kubectl get nodes
         kubectl create ns actions-runner-system
         kubectl create secret generic controller-manager \
           -n actions-runner-system \
           --from-literal=github_token=${{ secrets.ARC_PAT }}
+
+    - name: Install Cert Manager
+      run: |
         helm repo add jetstack https://charts.jetstack.io
         helm repo update
         helm install \
@@ -52,7 +54,16 @@ jobs:
           --create-namespace \
           --version v1.9.1 \
           --set installCRDs=true
+
+    - name: Install Actions Runner Controller
+      run: |
         helm repo add actions-runner-controller https://actions-runner-controller.github.io/actions-runner-controller
         helm upgrade --install --namespace actions-runner-system \
           --wait actions-runner-controller actions-runner-controller/actions-runner-controller
-        kubectl apply -f manifests
+
+    - name: Apply Manifests
+      run: |
+        echo "Nothing done if no manifests here"
+        if [ ! -d manifests ]; then
+          kubectl apply -f manifests
+        fi

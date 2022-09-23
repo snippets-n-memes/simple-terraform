@@ -21,7 +21,7 @@ jobs:
         env: [prime, beta]
     environment:
       name: ${{ matrix.env }}
-    name: 'Terraform Apply'
+    name: 'Terraform Destroy'
     runs-on: ubuntu-latest
 
     defaults:
@@ -36,4 +36,4 @@ jobs:
     - name: Terraform Apply
       run: |
         terraform init -backend-config=key=${{ matrix.env  }}
-        terraform apply -var-file=env/${{ matrix.env }}.tfvars -input=false -auto-approve
+        terraform destroy -var-file=env/${{ matrix.env }}.tfvars -input=false -auto-approve
