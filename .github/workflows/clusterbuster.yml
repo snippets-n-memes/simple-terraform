@@ -76,6 +76,6 @@ jobs:
     - name: Apply Manifests
       run: |
         echo "Nothing done if no manifests here"
-        if [ ! -d manifests ]; then
+        if [ -d manifests ]; then
           kubectl apply -f manifests
         fi
