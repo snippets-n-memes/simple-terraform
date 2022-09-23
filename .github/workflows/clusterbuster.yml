@@ -17,7 +17,7 @@ jobs:
           - dank_simple_cluster_prime/aks-dank_prime
           - dank_simple_cluster_beta/aks-dank_beta
     environment:
-      name: [prime, beta]
+      name:  $(echo ${{ matrix.cluster }} | awk -F "/" '{print $2}' | awk -F "_" '{print $2'}')
     permissions:
       actions: read
       contents: read
@@ -32,8 +32,8 @@ jobs:
     - name: Get K8s context
       uses: azure/aks-set-context@v2.0
       with:
-        resource-group: $(echo ${{ matrix.cluster }} | awk -F "/" '{print $1}'
-        cluster-name: $(echo ${{ matrix.cluster }} | awk -F "/" '{print $2}'
+        resource-group: $(echo ${{ matrix.cluster }} | awk -F "/" '{print $1}')
+        cluster-name: $(echo ${{ matrix.cluster }} | awk -F "/" '{print $2}')
         
     - name: Install Kubelogin
       run: |
