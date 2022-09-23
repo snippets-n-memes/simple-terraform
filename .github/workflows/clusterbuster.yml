@@ -10,6 +10,12 @@ env:
 
 jobs:
   kubetime:
+    continue-on-error: true
+    strategy:
+      matrix:
+        cluster: 
+          - dank_simple_cluster_resources_prime/aks-dank_prime
+          - dank_simple_cluster_resources_beta/aks-dank_beta
     permissions:
       actions: read
       contents: read
@@ -24,8 +30,8 @@ jobs:
     - name: Get K8s context
       uses: azure/aks-set-context@v2.0
       with:
-        resource-group: ${{ env.RESOURCE_GROUP }}
-        cluster-name: ${{ env.CLUSTER_NAME }}  
+        resource-group: $(echo ${{ matrix.cluster }} | awk -F "/" '{print $1}'
+        cluster-name: $(echo ${{ matrix.cluster }} | awk -F "/" '{print $2}'
         
     - name: Install Kubelogin
       run: |
