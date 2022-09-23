@@ -15,10 +15,10 @@ jobs:
       matrix:
         include:
           - rg: dank_simple_cluster_prime
-            cluster: dank-aks_prime
+            cluster: aks-dank_prime
             env: prime
           - rg: dank_simple_cluster_beta
-            cluster: dank-aks_beta
+            cluster: aks-dank_beta
             env: beta
     environment:
       name: ${{ matrix.env }}
