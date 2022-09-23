@@ -13,15 +13,6 @@ jobs:
     continue-on-error: true
     strategy:
       matrix:
-        rg: 
-          - dank_simple_cluster_prime
-          - dank_simple_cluster_resources_beta
-        cluster:
-          - dank-aks_prime
-          - dank-aks_beta
-        env: 
-          - prime
-          - beta
         include:
           - rg: dank_simple_cluster_prime
             cluster: dank-aks_prime
@@ -47,7 +38,7 @@ jobs:
       with:
         resource-group: ${{ matrix.rg }}
         cluster-name: ${{ matrix.cluster }}
-        
+
     - name: Install Kubelogin
       run: |
         curl -L $(curl -s https://api.github.com/repos/Azure/kubelogin/releases/latest \
