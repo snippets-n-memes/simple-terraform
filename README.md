@@ -5,6 +5,8 @@ State comes first, then you have a remote backend for everything else.
 
 ## Hub and Spoke DNS configuration
 
+The following steps are a simple way to configure enough of the hub and spoke model to make testing Private Endpoints possible in an environment where custom central DNS is at play. This is most Enterprise environments, btw. When using custom DNS, you must configure your setup so that requests for Private Endpoints ultimately make it to Azure's special DNS resolvers for Private DNS.
+
 After deploying the Hub:
 
 ```bash
