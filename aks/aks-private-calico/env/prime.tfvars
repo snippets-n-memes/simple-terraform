@@ -35,7 +35,6 @@ aks_agents_type                  = "VirtualMachineScaleSets"
 aks_enable_auto_scaling          = "false"
 private_cluster_enabled          = "true"
 admin_username                   = "robodank"
-pub_ssh_key                      = "~/.ssh/id_rsa.pub"
 
 # AKS Network
 network_plugin                   = "azure"

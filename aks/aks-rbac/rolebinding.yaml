@@ -10,4 +10,4 @@ roleRef:
 subjects:
 - kind: Group
   namespace: dev
-  name: b34a038f-89ab-40d9-967d-c320f8862008
+  name: AD_GROUP_OBJECT_ID

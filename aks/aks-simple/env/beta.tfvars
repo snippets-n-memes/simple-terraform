@@ -25,7 +25,6 @@ aks_agents_type                  = "VirtualMachineScaleSets"
 aks_enable_auto_scaling          = "true"
 private_cluster_enabled          = "false"
 admin_username                   = "robodank"
-pub_ssh_key                      = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDeu597VZodBbrfxSQA4SFFeALfCJDnSV2G2eZ2rPjvpukao9Wsu1ChpI3hiMLtRTBzdeNlL41K16rgDmmv7QLQlsZfUFeDL4OWMrBsUEuJo+BtjCgU3NHxUHTOphoYrg/yaqD935UMoyCOMmC/Z7N54XlVidKrANWQJRC9rmxB2auWGHdI0YzMCgTDFD7M57nKyvl025HK6FHZ2l9IuVwWaCrv7Pkncs6/d43z8sII1om/oQ6d4yFDrG4thWX0w4pITVSsSZwzUeiqsmSzEiBaQ1EWNKW/4kVZ8lWRRroJQvQk2BEcePAp3SOQShhPRmVqtOgTO4+UVcGSO7fjFXDD daniel@hydra"
 
 # Kubernetes Cluster Node Pool "app"
 aks_app_vm_size                  = "Standard_DS2_v2"
