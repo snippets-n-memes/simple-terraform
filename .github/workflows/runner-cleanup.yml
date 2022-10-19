@@ -1,0 +1,52 @@
+name: Cluster Cleaner
+
+on:
+  workflow_dispatch:
+  workflow_call:
+
+jobs:
+  kubetime:
+    continue-on-error: true
+    strategy:
+      matrix:
+        include:
+          - rg: dank_simple_cluster_prime
+            cluster: aks-dank_prime
+            env: prime
+          - rg: dank_simple_cluster_beta
+            cluster: aks-dank_beta
+            env: beta
+    environment:
+      name: ${{ matrix.env }}
+    permissions:
+      actions: read
+      contents: read
+      id-token: write
+    runs-on: ubuntu-latest
+    steps:
+    - name: Azure login
+      uses: azure/login@v1.4.3
+      with:
+        creds: ${{ secrets.AZURE_CREDENTIALS }}
+      
+    - name: Get K8s context
+      uses: azure/aks-set-context@v2.0
+      with:
+        resource-group: ${{ matrix.rg }}
+        cluster-name: ${{ matrix.cluster }}
+
+    - name: Install Kubelogin
+      run: |
+        curl -L $(curl -s https://api.github.com/repos/Azure/kubelogin/releases/latest \
+          | jq -r ".assets[] | select(.name | test(\"linux-amd64.zip$\")) | .browser_download_url") \
+          -o kubelogin.zip
+        unzip kubelogin.zip
+        chmod +x bin/linux_amd64/kubelogin
+        echo "$(find "$(pwd)" -name kubelogin | rev | cut -d '/' -f 2- | rev)" >> $GITHUB_PATH
+        
+    - name: Deregister Runners
+      run: |
+        kubelogin convert-kubeconfig -l azurecli
+        while read -r runner; do 
+          kubectl -n $(echo $runner | awk '{print $1}') delete RunnerDeployment $(echo $runner | awk '{print $2}'); 
+        done < <(kubectl get RunnerDeployments -A --no-headers) 
