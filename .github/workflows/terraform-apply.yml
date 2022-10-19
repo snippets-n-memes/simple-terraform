@@ -36,4 +36,4 @@ jobs:
     - name: Terraform Apply
       run: |
         terraform init -backend-config=key=${{ matrix.env  }}
-        terraform apply -var-file=env/${{ matrix.env }}.tfvars -var=pub_ssh_key=${{secrets.PUB_SSH_KEY}} -input=false -auto-approve
+        terraform apply -var-file=env/${{ matrix.env }}.tfvars -var="pub_ssh_key=${{secrets.PUB_SSH_KEY}}" -input=false -auto-approve
