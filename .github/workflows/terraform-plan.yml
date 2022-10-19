@@ -35,7 +35,7 @@ jobs:
     - name: Terraform Plan
       run: |
         terraform init -backend-config=key=${{ matrix.env  }}
-        terraform plan -no-color -input=false -var-file=env/${{ matrix.env  }}.tfvars -var=pub_ssh_key=${{secrets.PUB_SSH_KEY}} -out tfplan
+        terraform plan -no-color -input=false -var-file=env/${{ matrix.env  }}.tfvars -var="pub_ssh_key=${{secrets.PUB_SSH_KEY}}" -out tfplan
 
     - name: Prep Plan for Comment
       run: |
