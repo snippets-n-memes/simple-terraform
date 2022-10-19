@@ -17,10 +17,10 @@ jobs:
   clean:
     strategy:
       matrix:
-        target: [prime, beta]
+        env: [prime, beta]
     uses: ./.github/workflows/runner-cleanup.yml
     with:
-      target: ${{ matrix.target }}
+      env: ${{ matrix.target }}
     secrets: inherit
   
   nuke:
