@@ -19,10 +19,20 @@ jobs:
   clean:
     strategy:
       matrix:
-        env: [prime, beta]
+        include:
+          - rg: dank_simple_cluster_prime
+            cluster: aks-dank_prime
+            env: prime
+          - rg: dank_simple_cluster_beta
+            cluster: aks-dank_beta
+            env: beta
+#       matrix:
+#         env: [prime, beta]
     uses: ./.github/workflows/runner-cleanup.yml
     with:
-      env: ${{ matrix.target }}
+      env: ${{ matrix.env }}
+      rg: ${{ matrix.rg }}
+      cluster: ${{ matrix.cluster }}
     secrets: inherit
   
   nuke:
