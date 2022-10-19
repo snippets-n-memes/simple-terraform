@@ -14,6 +14,15 @@ env:
   ARM_TENANT_ID: ${{ secrets.AZURE_TENANT_ID }}
 
 jobs:
+  clean:
+    strategy:
+      matrix:
+        target: [prime, beta]
+    uses: ./.github/workflows/runner-cleanup.yml
+    with:
+      target: ${{ matrix.target }}
+    secrets: inherit
+  
   nuke:
     continue-on-error: true
     strategy:
@@ -33,7 +42,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v3
 
-    - name: Terraform Destroy
-      run: |
-        terraform init -backend-config=key=${{ matrix.env  }}
-        terraform destroy -var-file=env/${{ matrix.env }}.tfvars -var="pub_ssh_key=${{secrets.PUB_SSH_KEY}}" -input=false -auto-approve
+#     - name: Terraform Destroy
+#       run: |
+#         terraform init -backend-config=key=${{ matrix.env  }}
+#         terraform destroy -var-file=env/${{ matrix.env }}.tfvars -var="pub_ssh_key=${{secrets.PUB_SSH_KEY}}" -input=false -auto-approve
