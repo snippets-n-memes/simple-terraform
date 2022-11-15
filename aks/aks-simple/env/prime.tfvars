@@ -1,4 +1,3 @@
-# comment
 # Defined Resources
 resource_group_rg                = 1
 kubernetes_cluster_aks           = 1
@@ -8,7 +7,7 @@ kubernetes_cluster_node_pool_app = 1
 location                         = "East US"
 
 # Resource Group
-rg_name                          = "dank_simple_cluster_prime"
+rg_name                          = "dank_cluster_prime"
 
 # Kubernetes Cluster AKS
 aks_name                         = "aks-dank_prime"

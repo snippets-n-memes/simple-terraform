@@ -1,4 +1,3 @@
-# comment
 # Defined Resources
 resource_group_rg                = 1
 kubernetes_cluster_aks           = 1
@@ -8,14 +7,14 @@ kubernetes_cluster_node_pool_app = 1
 location                         = "East US"
 
 # Resource Group
-rg_name                          = "dank_rbac_cluster_resources"
+rg_name                          = "dank_cluster_prime"
 
 # Kubernetes Cluster AKS
-aks_name                         = "dank-aks"
+aks_name                         = "aks-dank_prime"
 aks_dns_prefix                   = "dank8s"
 aks_sku_tier                     = "Free"
 identity_name                    = "prime-aks"
-node_resource_group              = "dank_node_resources"
+node_resource_group              = "dank_rbac_cluster_nodes_prime"
 aks_k8s_version                  = "1.24.3"
 aks_sys_vm_size                  = "Standard_DS2_v2"
 aks_sys_node_pool_name           = "system"

@@ -7,7 +7,7 @@ kubernetes_cluster_node_pool_app = 1
 location                         = "East US"
 
 # Resource Group
-rg_name                          = "dank_aks_csi_kv_beta"
+rg_name                          = "dank_cluster_beta"
 
 # Kubernetes Cluster AKS
 aks_name                         = "aks-dank_beta"
@@ -32,6 +32,9 @@ aks_app_node_pool_name           = "app"
 aks_app_node_count               = 1
 aks_app_min_count                = 1
 aks_app_max_count                = 3
+
+# Key Vault
+kv_name                          = "dankvault-beta"
 
 # Tags
 tags = {

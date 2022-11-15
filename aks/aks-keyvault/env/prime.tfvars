@@ -1,4 +1,3 @@
-# comment
 # Defined Resources
 resource_group_rg                = 1
 kubernetes_cluster_aks           = 1
@@ -8,7 +7,7 @@ kubernetes_cluster_node_pool_app = 1
 location                         = "East US"
 
 # Resource Group
-rg_name                          = "dank_aks_csi_kv_prime"
+rg_name                          = "dank_cluster_prime"
 
 # Kubernetes Cluster AKS
 aks_name                         = "aks-dank_prime"
@@ -35,8 +34,7 @@ aks_app_min_count                = 1
 aks_app_max_count                = 3
 
 # Key Vault
-kv_name                          = "dankvault"
-
+kv_name                          = "dankvault-prime"
 
 # Tags
 tags = {

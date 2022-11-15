@@ -4,20 +4,16 @@ on:
   workflow_dispatch:
   workflow_call:
 
-env:
-  RESOURCE_GROUP: "dank_simple_cluster_resources"
-  CLUSTER_NAME: "aks-dank_prime"
-
 jobs:
   kubetime:
     continue-on-error: true
     strategy:
       matrix:
         include:
-          - rg: dank_simple_cluster_prime
+          - rg: dank_cluster_prime
             cluster: aks-dank_prime
             env: prime
-          - rg: dank_simple_cluster_beta
+          - rg: dank_cluster_beta
             cluster: aks-dank_beta
             env: beta
     environment:

@@ -2,6 +2,14 @@ name: 'Terraform Apply'
 
 on:
   workflow_dispatch:
+    inputs:
+      name: cluster-type
+      description: Which Cluster to build?
+      options:
+      - aks-simple
+      - aks-rbac
+      - aks-private-calico
+      - aks-keyvault
   workflow_call:
 
 permissions:
@@ -27,7 +35,7 @@ jobs:
     defaults:
       run:
         shell: bash
-        working-directory: aks/aks-simple
+        working-directory: aks/${{ inputs.cluster-type }}
 
     steps:
     - name: Checkout
