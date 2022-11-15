@@ -3,7 +3,7 @@ name: 'Terraform Nuke'
 on:
   workflow_dispatch:
     inputs:
-      name: cluster-type
+      cluster-type:
         type: choice
         description: Which Cluster to build?
         options:
